@@ -40,3 +40,15 @@ http://127.0.0.1:5000/
 ```
 
 Esta página permitirá explorar a documentação da API
+
+### Para instalar e ativar a virtual env no windows:
+
+No windows, na raiz do projeto, exexute:
+```
+python -m venv env
+```
+
+Para ativar a env, execute:
+```
+env/Scripts/activate
+```
