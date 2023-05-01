@@ -23,5 +23,5 @@ Session = sessionmaker(bind=engine)
 if not database_exists(engine.url):
     create_database(engine.url)
 
-#Cria tabelas no banco de dados
+# Cria tabelas no banco de dados
 Base.metadata.create_all(engine)

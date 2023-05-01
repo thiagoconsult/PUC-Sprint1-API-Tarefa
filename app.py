@@ -13,6 +13,7 @@ CORS(app)
 
 tag_tarefa = Tag(name='Tarefa', description='API para CRUD de tarefa')
 
+
 ##############################################################################
 # DOCUMENTAÇÃO SWAGGER
 ##############################################################################
@@ -74,24 +75,24 @@ def get_tarefas():
 
 
 ##############################################################################
-# GET TAREFA POR ID
+# GET TAREFA POR TITULO
 ##############################################################################
 @app.get(
-    '/tarefa',
+    '/tarefaTitulo',
     tags=[tag_tarefa],
-    summary='Tarefa por ID',
+    summary='Tarefas por Título',
     description='Este método retorna uma tarefa pelo seu ID.',
     responses={
         '200': TarefaSchemaView,
         '404': ErrorSchema
     }
 )
-def get_tarefa(query: TarefaSchemaById):
-    tarefa_id = query.id
+def get_tarefaTitulo(query: TarefaSchemaByTitulo):
+    tarefa_titulo = query.titulo
     session = Session()
-    tarefa = session.query(Tarefa).filter(Tarefa.id == tarefa_id).first()
-    if tarefa:
-        return apresenta_tarefa(tarefa), 200
+    tarefas = session.query(Tarefa).filter(Tarefa.titulo.like('%'+tarefa_titulo+'%')).all()
+    if tarefas:
+        return apresenta_tarefas(tarefas), 200
     else:
         error_msg = 'Tarefa não encontrada'
         return {'mesage': error_msg}, 404

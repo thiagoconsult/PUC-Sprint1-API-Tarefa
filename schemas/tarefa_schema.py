@@ -32,6 +32,11 @@ class TarefaSchemaById(BaseModel):
     id: int
 
 
+class TarefaSchemaByTitulo(BaseModel):
+    '''Define como buscar uma tarefa pelo ID'''
+    titulo: str
+
+
 class TarefaSchemaDelete(BaseModel):
     '''Define como uma tarefa será apresentada após deletada'''
     id: int
